@@ -1,11 +1,11 @@
-const runCode = () => {
+const runCode = async () => {
 
     const maxNumInput = Number(document.getElementById("max-input").value) 
     const minNumInput = Number(document.getElementById("min-input").value) 
 
     console.log("start")
 
-    generate7BoomAfterDelayAsync(minNumInput, maxNumInput)
+    await generate7BoomAfterDelayAsync(minNumInput, maxNumInput)
         .then((randomNum) => {
             console.log(randomNum + " 7 💣")
         })
