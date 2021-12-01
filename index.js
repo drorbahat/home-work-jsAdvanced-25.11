@@ -1,31 +1,28 @@
-const runCode = () => {
-
-    const maxNumInput = Number(document.getElementById("max-input").value) 
-    const minNumInput = Number(document.getElementById("min-input").value) 
+const runCode = async () => {
 
     console.log("start")
 
-    generate7BoomAfterDelayAsync(minNumInput, maxNumInput)
-        .then((randomNum) => {
-            console.log(randomNum + " 7 💣")
+    await generateWorkingDayAfterDelayAsync()
+        .then((randomDay) => {
+            console.log(randomDay + " is a working day")
         })
-        .catch((randomNum) => {
-            console.log("Error! " + randomNum + " not this time :)")
+        .catch((randomDay) => {
+            console.log("Error! " + randomDay + " is not a working day")
         })
 
     console.log("end")
 }
 
-const generate7BoomAfterDelayAsync = (min, max) => {
+const generateWorkingDayAfterDelayAsync = () => {
     return new Promise((resolve, Reject) => {
-
-        let randomNum = Math.floor(Math.random() * max) + min
-
+        let weekDayList = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+        let randomDay = weekDayList[Math.floor(Math.random() * weekDayList.length)]
+        console.log(randomDay)
         setTimeout(() => {
-            if (randomNum % 7 === 0 || randomNum % 10 === 7) {
-                resolve(randomNum)
+            if (randomDay === 'friday' || randomDay === 'saturday') {
+                Reject(randomDay)
             } else {
-                Reject(randomNum)
+                resolve(randomDay)
             }
         }, 1000);
     })

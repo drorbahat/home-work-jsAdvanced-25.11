@@ -1,11 +1,15 @@
-form{
-    margin: auto;
+body{
+    margin: 0;
+    padding: 0;
 }
 
 #main-container {
     display: flex;
     justify-content: center;
+    margin: 0;
+    padding: 0;
     height: 100vh;
+    background-color: rgb(165, 148, 182);
 }
 
 #execute-button{
@@ -13,7 +17,7 @@ form{
     width: 10rem;
     margin: auto;
     border-radius: 50%;
-    border-color: rgb(0, 136, 255);
+    border-color: rgb(116, 154, 187);
     border-width: 1rem;
-    background-color: rgb(78, 192, 192);
+    background-color: rgb(114, 177, 177);
 }
