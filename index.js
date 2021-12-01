@@ -1,28 +1,28 @@
 const runCode = async () => {
-
     console.log("start")
-
-    await generateWorkingDayAfterDelayAsync()
-        .then((randomDay) => {
-            console.log(randomDay + " is a working day")
+    await getArrayFromServerAsync(10)
+        .then((newArr) => {
+            console.log(newArr)
         })
-        .catch((randomDay) => {
-            console.log("Error! " + randomDay + " is not a working day")
+        .catch((randomNum) => {
+            console.log(randomNum + " does not divides. cannot get array from server.")
         })
-
     console.log("end")
 }
 
-const generateWorkingDayAfterDelayAsync = () => {
+const getArrayFromServerAsync = (size) => {
     return new Promise((resolve, Reject) => {
-        let weekDayList = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-        let randomDay = weekDayList[Math.floor(Math.random() * weekDayList.length)]
-        console.log(randomDay)
         setTimeout(() => {
-            if (randomDay === 'friday' || randomDay === 'saturday') {
-                Reject(randomDay)
+            let randomNum = Math.floor(Math.random() * 50)
+            let newArr = []
+            if (randomNum % 2 === 0) {
+                for (let i = 0; i < size; i++) {
+                    let newNunInArr = Math.floor(Math.random() * 5)
+                    newArr.push(newNunInArr)
+                }
+                resolve(newArr)
             } else {
-                resolve(randomDay)
+                Reject(randomNum)
             }
         }, 1000);
     })
