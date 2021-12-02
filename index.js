@@ -1,8 +1,8 @@
 const runCode = async () => {
     console.log("start")
-    await getArrayFromServerAsync(10)
-        .then((newArr) => {
-            console.log(newArr)
+    await getPizzaFromServerAsync()
+        .then((pizza) => {
+            console.log(pizza)
         })
         .catch((randomNum) => {
             console.log(randomNum + " does not divides. cannot get array from server.")
@@ -10,17 +10,24 @@ const runCode = async () => {
     console.log("end")
 }
 
-const getArrayFromServerAsync = (size) => {
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const getPizzaFromServerAsync = () => {
     return new Promise((resolve, Reject) => {
         setTimeout(() => {
             let randomNum = Math.floor(Math.random() * 50)
-            let newArr = []
             if (randomNum % 2 === 0) {
-                for (let i = 0; i < size; i++) {
-                    let newNunInArr = Math.floor(Math.random() * 5)
-                    newArr.push(newNunInArr)
+                let randomDiameter = getRndInteger(10, 50)
+                let randomPrice = getRndInteger(20, 80)
+                let randomToppings = getRndInteger(0, 4)
+                let pizzaObj = {
+                    diameter: randomDiameter,
+                    price: randomPrice,
+                    toppings: randomToppings
                 }
-                resolve(newArr)
+                resolve(pizzaObj)
             } else {
                 Reject(randomNum)
             }
